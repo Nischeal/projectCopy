@@ -14,10 +14,10 @@
       <h2>Mart Dashboard</h2>
       <nav>
         <ul>
-          <li><i class='bx bxs-dashboard'><a href="index.html">Dashboard</a></i></li>
-          <li><i class='bx bx-shopping-bag' ><a href="sales.html">Sales</a></i></li>
-          <li><i class='bx bx-box' ><a href="inventory.html">Inventory</a></i></li>
-          <li><i class='bx bxs-user' ><a href="customer.html">Customers</a></i></li>
+          <li><i class='bx bxs-dashboard'><a href="index.php">Dashboard</a></i></li>
+          <li><i class='bx bx-shopping-bag' ><a href="sales.php">Sales</a></i></li>
+          <li><i class='bx bx-box' ><a href="inventory.php">Inventory</a></i></li>
+          <li><i class='bx bxs-user' ><a href="customer.php">Customers</a></i></li>
           <li><i class='bx bxs-report'></i><a href="#reports">Reports</a></li>
         </ul>
       </nav>

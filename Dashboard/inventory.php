@@ -6,7 +6,6 @@
   <title>Inventory Page</title>
   <link rel="stylesheet" href="styles.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
 </head>
 <body>
   <div class="dashboard">
@@ -15,10 +14,10 @@
       <h2>Mart Dashboard</h2>
       <nav>
         <ul>
-          <li><i class='bx bxs-dashboard'><a href="index.html">Dashboard</a></i></li>
-          <li><i class='bx bx-shopping-bag' ><a href="sales.html">Sales</a></i></li>
-          <li><i class='bx bx-box' ><a href="inventory.html">Inventory</a></i></li>
-          <li><i class='bx bxs-user' ><a href="customer.html">Customers</a></i></li>
+          <li><i class='bx bxs-dashboard'><a href="index.php">Dashboard</a></i></li>
+          <li><i class='bx bx-shopping-bag' ><a href="sales.php">Sales</a></i></li>
+          <li><i class='bx bx-box' ><a href="inventory.php">Inventory</a></i></li>
+          <li><i class='bx bxs-user' ><a href="customer.php">Customers</a></i></li>
           <li><i class='bx bxs-report'></i><a href="#reports">Reports</a></li>
         </ul>
       </nav>
@@ -29,6 +28,10 @@
       <header>
         <h1>Inventory Overview</h1>
       </header>
+
+      <?php
+        include 'db_connection.php';
+      ?>
 
       <!-- Filters Section -->
       <section class="filters">
@@ -41,19 +44,19 @@
       <section class="widgets">
         <div class="widget">
           <h3>Total Products</h3>
-          <p>500</p>
+          <p><?php echo getTotalProducts($conn); ?></p>
         </div>
         <div class="widget">
           <h3>Out of Stock</h3>
-          <p>15</p>
+          <p><?php echo getOutOfStockProducts($conn); ?></p>
         </div>
         <div class="widget">
           <h3>Low Stock</h3>
-          <p>25</p>
+          <p><?php echo getLowStockProducts($conn); ?></p>
         </div>
         <div class="widget">
           <h3>Stock Value</h3>
-          <p>$75,000</p>
+          <p>$<?php echo getStockValue($conn); ?></p>
         </div>
       </section>
 
@@ -72,38 +75,26 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>001</td>
-              <td>Apple</td>
-              <td>Fruits</td>
-              <td>50</td>
-              <td>$1.20</td>
-              <td>In Stock</td>
-            </tr>
-            <tr>
-              <td>002</td>
-              <td>Milk</td>
-              <td>Dairy</td>
-              <td>0</td>
-              <td>$2.00</td>
-              <td>Out of Stock</td>
-            </tr>
-            <tr>
-              <td>003</td>
-              <td>Bread</td>
-              <td>Bakery</td>
-              <td>15</td>
-              <td>$1.50</td>
-              <td>Low Stock</td>
-            </tr>
-            <tr>
-              <td>004</td>
-              <td>Rice</td>
-              <td>Grains</td>
-              <td>200</td>
-              <td>$10.00</td>
-              <td>In Stock</td>
-            </tr>
+            <?php
+              $result = getInventoryDetails($conn);
+
+              if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                  echo "<tr>
+                          <td>{$row['ProductID']}</td>
+                          <td>{$row['ProductName']}</td>
+                          <td>{$row['CategoryName']}</td>
+                          <td>{$row['QuantityInStock']}</td>
+                          <td>\${$row['UnitPrice']}</td>
+                          <td>" . getStockStatus($row['QuantityInStock']) . "</td>
+                        </tr>";
+                }
+              } else {
+                echo "<tr><td colspan='6'>No products found</td></tr>";
+              }
+
+              $conn->close();
+            ?>
           </tbody>
         </table>
       </section>
