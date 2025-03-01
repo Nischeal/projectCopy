@@ -56,4 +56,55 @@ function getStockStatus($quantity) {
     return 'In Stock';
   }
 }
+
+function getTotalSales($conn, $startDate = null, $endDate = null) {
+  $sql = "SELECT SUM(TotalAmount) as totalSales FROM Orders";
+  if ($startDate && $endDate) {
+    $sql .= " WHERE OrderDate BETWEEN '$startDate' AND '$endDate'";
+  }
+  $result = $conn->query($sql);
+  $row = $result->fetch_assoc();
+  return $row['totalSales'];
+}
+
+function getTotalOrders($conn, $startDate = null, $endDate = null) {
+  $sql = "SELECT COUNT(*) as totalOrders FROM Orders";
+  if ($startDate && $endDate) {
+    $sql .= " WHERE OrderDate BETWEEN '$startDate' AND '$endDate'";
+  }
+  $result = $conn->query($sql);
+  $row = $result->fetch_assoc();
+  return $row['totalOrders'];
+}
+
+function getAverageOrderValue($conn, $startDate = null, $endDate = null) {
+  $totalSales = getTotalSales($conn, $startDate, $endDate);
+  $totalOrders = getTotalOrders($conn, $startDate, $endDate);
+  return $totalOrders ? $totalSales / $totalOrders : 0;
+}
+
+function getRecentOrders($conn) {
+  $sql = "SELECT OrderID, OrderDate, TotalAmount, Status FROM Orders ORDER BY OrderDate DESC LIMIT 5";
+  $result = $conn->query($sql);
+  return $result;
+}
+
+function createOrder($conn, $totalAmount, $cartItems, $billedBy) {
+  $orderDate = date("Y-m-d H:i:s");
+  $status = 'Completed';
+  
+  $sql = "INSERT INTO Orders (OrderDate, TotalAmount, Status, BilledBy) VALUES ('$orderDate', '$totalAmount', '$status', '$billedBy')";
+  if ($conn->query($sql) === TRUE) {
+    $orderID = $conn->insert_id;
+    foreach ($cartItems as $cartItem) {
+      $productID = $cartItem['productID'];
+      $quantity = $cartItem['quantity'];
+      $sql = "INSERT INTO OrderDetails (OrderID, ProductID, Quantity) VALUES ('$orderID', '$productID', '$quantity')";
+      $conn->query($sql);
+    }
+    return true;
+  } else {
+    return false;
+  }
+}
 ?>

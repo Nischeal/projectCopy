@@ -6,7 +6,7 @@
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
   <title>Dashboard</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="dashboard">
@@ -15,12 +15,12 @@
       <h2>Mart Dashboard</h2>
       <nav>
         <ul>
-          <li><i class='bx bxs-dashboard'><a href="index.php">Dashboard</a></i></li>
-          <li><i class='bx bx-shopping-bag' ><a href="sales.php">Sales</a></i></li>
-          <li><i class='bx bx-box' ><a href="inventory.php">Inventory</a></i></li>
-          <li><i class='bx bxs-user' ><a href="customer.php">Customers</a></i></li>
+          <li><i class='bx bxs-dashboard'></i><a href="index.php">Dashboard</a></li>
+          <li><i class='bx bx-receipt'></i><a href="billing.php">Billing</a></li>
+          <li><i class='bx bx-shopping-bag'></i><a href="sales.php">Sales</a></li>
+          <li><i class='bx bx-box'></i><a href="inventory.php">Inventory</a></li>
           <li><i class='bx bxs-plus-circle'></i><a href="add_product.php">Add Product</a></li>
-          <li><i class='bx bxs-report'></i><a href="#reports">Reports</a></li>
+          <li><i class='bx bxs-category'></i><a href="add_category.php">Add Category</a></li>
         </ul>
       </nav>
     </aside>
@@ -31,66 +31,61 @@
         <h1>Dashboard</h1>
       </header>
       <section class="widgets">
-        <div class="widget">
-          <h3>Total Sales</h3>
-          <p>$15,000</p>
-        </div>
-        <div class="widget">
-          <h3>Products in Stock</h3>
-          <p>250</p>
-        </div>
-        <div class="widget">
-          <h3>New Customers</h3>
-          <p>30</p>
-        </div>
-        <div class="widget">
-          <h3>Orders</h3>
-          <p>120</p>
-        </div>
+        <?php
+          include 'db_connection.php';
+
+          $totalSales = getTotalSales($conn);
+          $totalProducts = getTotalProducts($conn);
+          $stockValue = getStockValue($conn);
+          $totalOrders = getTotalOrders($conn);
+
+          echo "<div class='widget'>
+                  <h3>Total Sales</h3>
+                  <p>\$$totalSales</p>
+                </div>";
+          echo "<div class='widget'>
+                  <h3>Products in Stock</h3>
+                  <p>$totalProducts</p>
+                </div>";
+          echo "<div class='widget'>
+                  <h3>Stock Value</h3>
+                  <p>\$$stockValue</p>
+                </div>";
+          echo "<div class='widget'>
+                  <h3>Orders</h3>
+                  <p>$totalOrders</p>
+                </div>";
+        ?>
       </section>
 
-      <!-- New Section: Recent Transactions -->
-      <section id="recent-transactions" class="recent-transactions">
-        <h2>Recent Transactions</h2>
+      <!-- New Section: Recent Orders -->
+      <section id="recent-orders" class="recent-transactions">
+        <h2>Recent Orders</h2>
         <table>
           <thead>
             <tr>
-              <th>Transaction ID</th>
-              <th>Customer</th>
+              <th>Order ID</th>
               <th>Date</th>
               <th>Amount</th>
               <th>Status</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>#001</td>
-              <td>Sonu Thapa</td>
-              <td>2024-12-15</td>
-              <td>$135</td>
-              <td>Completed</td>
-            </tr>
-            <tr>
-              <td>#002</td>
-              <td>Amrita Rai</td>
-              <td>2024-12-15</td>
-              <td>$85</td>
-              <td>Pending</td>
-            </tr>
-            <tr>
-              <td>#003</td>
-              <td>Rohit kc</td>
-              <td>2024-11-14</td>
-              <td>$200</td>
-              <td>Completed</td>
-            </tr>
-            <tr>
-              <td>#004</td>
-              <td>Milan Tamang</td>
-              <td>2024-11-13</td>
-              <td>$50</td>
-              <td>Refunded</td>
-            </tr>
+            <?php
+              $orders = getRecentOrders($conn);
+              if ($orders->num_rows > 0) {
+                while($row = $orders->fetch_assoc()) {
+                  echo "<tr>
+                          <td>#{$row['OrderID']}</td>
+                          <td>{$row['OrderDate']}</td>
+                          <td>\${$row['TotalAmount']}</td>
+                          <td>{$row['Status']}</td>
+                        </tr>";
+                }
+              } else {
+                echo "<tr><td colspan='4'>No recent orders</td></tr>";
+              }
+            ?>
           </tbody>
         </table>
       </section>

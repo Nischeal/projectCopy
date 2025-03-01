@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Inventory Page</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="style.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
@@ -14,11 +14,12 @@
       <h2>Mart Dashboard</h2>
       <nav>
         <ul>
-          <li><i class='bx bxs-dashboard'><a href="index.php">Dashboard</a></i></li>
-          <li><i class='bx bx-shopping-bag' ><a href="sales.php">Sales</a></i></li>
-          <li><i class='bx bx-box' ><a href="inventory.php">Inventory</a></i></li>
-          <li><i class='bx bxs-user' ><a href="customer.php">Customers</a></i></li>
-          <li><i class='bx bxs-report'></i><a href="#reports">Reports</a></li>
+        <li><i class='bx bxs-dashboard'></i><a href="index.php">Dashboard</a></li>
+          <li><i class='bx bx-receipt'></i><a href="billing.php">Billing</a></li>
+          <li><i class='bx bx-shopping-bag'></i><a href="sales.php">Sales</a></li>
+          <li><i class='bx bx-box'></i><a href="inventory.php">Inventory</a></li>
+          <li><i class='bx bxs-plus-circle'></i><a href="add_product.php">Add Product</a></li>
+          <li><i class='bx bxs-category'></i><a href="add_category.php">Add Category</a></li>
         </ul>
       </nav>
     </aside>

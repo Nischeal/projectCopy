@@ -4,12 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Add Product</title>
-  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
-<style>
-    
-</style>
 <body>
   <div class="dashboard">
     <!-- Sidebar -->
@@ -17,12 +14,12 @@
       <h2>Mart Dashboard</h2>
       <nav>
         <ul>
-          <li><i class='bx bxs-dashboard'></i><a href="index.php">Dashboard</a></li>
+        <li><i class='bx bxs-dashboard'></i><a href="index.php">Dashboard</a></li>
+          <li><i class='bx bx-receipt'></i><a href="billing.php">Billing</a></li>
           <li><i class='bx bx-shopping-bag'></i><a href="sales.php">Sales</a></li>
           <li><i class='bx bx-box'></i><a href="inventory.php">Inventory</a></li>
-          <li><i class='bx bxs-user'></i><a href="customer.php">Customers</a></li>
-          <li><i class='bx bxs-report'></i><a href="#reports">Reports</a></li>
           <li><i class='bx bxs-plus-circle'></i><a href="add_product.php">Add Product</a></li>
+          <li><i class='bx bxs-category'></i><a href="add_category.php">Add Category</a></li>
         </ul>
       </nav>
     </aside>
@@ -54,30 +51,30 @@
         }
       ?>
 
-      <form method="POST" action="" class="product-form">
-        <div class="form-group">
-          <label for="productName" class="form-label">Product Name:</label>
-          <input type="text" id="productName" name="productName" required class="form-input">
+      <form method="POST" action="" class="add-form">
+        <div class="add-form-group">
+          <label for="productName" class="add-form-label">Product Name:</label>
+          <input type="text" id="productName" name="productName" required class="add-form-input">
         </div>
 
-        <div class="form-group">
-          <label for="description" class="form-label">Description:</label>
-          <textarea id="description" name="description" required class="form-input"></textarea>
+        <div class="add-form-group">
+          <label for="description" class="add-form-label">Description:</label>
+          <textarea id="description" name="description" required class="add-form-input"></textarea>
         </div>
 
-        <div class="form-group">
-          <label for="unitPrice" class="form-label">Unit Price:</label>
-          <input type="number" id="unitPrice" name="unitPrice" step="0.01" required class="form-input">
+        <div class="add-form-group">
+          <label for="unitPrice" class="add-form-label">Unit Price:</label>
+          <input type="number" id="unitPrice" name="unitPrice" step="0.01" required class="add-form-input">
         </div>
 
-        <div class="form-group">
-          <label for="quantityInStock" class="form-label">Quantity In Stock:</label>
-          <input type="number" id="quantityInStock" name="quantityInStock" required class="form-input">
+        <div class="add-form-group">
+          <label for="quantityInStock" class="add-form-label">Quantity In Stock:</label>
+          <input type="number" id="quantityInStock" name="quantityInStock" required class="add-form-input">
         </div>
 
-        <div class="form-group">
-          <label for="categoryID" class="form-label">Category:</label>
-          <select id="categoryID" name="categoryID" required class="form-input">
+        <div class="add-form-group">
+          <label for="categoryID" class="add-form-label">Category:</label>
+          <select id="categoryID" name="categoryID" required class="add-form-input">
             <?php
               $sql = "SELECT CategoryID, CategoryName FROM Category";
               $result = $conn->query($sql);
@@ -91,7 +88,7 @@
           </select>
         </div>
 
-        <button type="submit" class="submit-button">Add Product</button>
+        <button type="submit" class="add-submit-button">Add Product</button>
       </form>
     </main>
   </div>
