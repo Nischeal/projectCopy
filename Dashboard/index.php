@@ -12,7 +12,10 @@
   <div class="dashboard">
     <!-- Sidebar -->
     <aside class="sidebar">
-      <h2>Mart Dashboard</h2>
+    <a href="index.php" class="logo">
+            <i class='bx bx-cart' ></i>
+            <div class="logo-name"><span>Shopping</span>Mart</div>
+        </a>
       <nav>
         <ul>
           <li><i class='bx bxs-dashboard'></i><a href="index.php">Dashboard</a></li>
@@ -40,23 +43,39 @@
           $totalOrders = getTotalOrders($conn);
 
           echo "<div class='widget'>
-                  <h3>Total Sales</h3>
-                  <p>\$$totalSales</p>
-                </div>";
-          echo "<div class='widget'>
-                  <h3>Products in Stock</h3>
-                  <p>$totalProducts</p>
-                </div>";
-          echo "<div class='widget'>
-                  <h3>Stock Value</h3>
-                  <p>\$$stockValue</p>
-                </div>";
-          echo "<div class='widget'>
-                  <h3>Orders</h3>
-                  <p>$totalOrders</p>
-                </div>";
+                <i class='bx bx-dollar-circle'></i>
+                <div class='widget-content'>
+                    <h3>Total Sales</h3>
+                    <p>Rs. $totalSales</p>
+                </div>
+              </div>";
+
+        echo "<div class='widget'>
+                <i class='bx bx-cube'></i>
+                <div class='widget-content'>
+                    <h3>Products in Stock</h3>
+                    <p>$totalProducts</p>
+                </div>
+              </div>";
+
+        echo "<div class='widget'>
+                <i class='bx bx-bar-chart'></i>
+                <div class='widget-content'>
+                    <h3>Stock Value</h3>
+                    <p>Rs. $stockValue</p>
+                </div>
+              </div>";
+
+        echo "<div class='widget'>
+                <i class='bx bx-cart'></i>
+                <div class='widget-content'>
+                    <h3>Orders</h3>
+                    <p>$totalOrders</p>
+                </div>
+              </div>";
         ?>
       </section>
+      
 
       <!-- New Section: Recent Orders -->
       <section id="recent-orders" class="recent-transactions">
@@ -78,7 +97,7 @@
                   echo "<tr>
                           <td>#{$row['OrderID']}</td>
                           <td>{$row['OrderDate']}</td>
-                          <td>\${$row['TotalAmount']}</td>
+                          <td>Rs. {$row['TotalAmount']}</td>
                           <td>{$row['Status']}</td>
                         </tr>";
                 }

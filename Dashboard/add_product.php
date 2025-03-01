@@ -11,8 +11,10 @@
   <div class="dashboard">
     <!-- Sidebar -->
     <aside class="sidebar">
-      <h2>Mart Dashboard</h2>
-      <nav>
+    <a href="index.php" class="logo">
+            <i class='bx bx-cart' ></i>
+            <div class="logo-name"><span>Shopping</span>Mart</div>
+        </a>      <nav>
         <ul>
         <li><i class='bx bxs-dashboard'></i><a href="index.php">Dashboard</a></li>
           <li><i class='bx bx-receipt'></i><a href="billing.php">Billing</a></li>

@@ -11,8 +11,10 @@
   <div class="dashboard">
     <!-- Sidebar -->
     <aside class="sidebar">
-      <h2>Mart Dashboard</h2>
-      <nav>
+    <a href="index.php" class="logo">
+            <i class='bx bx-cart' ></i>
+            <div class="logo-name"><span>Shopping</span>Mart</div>
+        </a>      <nav>
         <ul>
           <li><i class='bx bxs-dashboard'></i><a href="index.php">Dashboard</a></li>
           <li><i class='bx bx-receipt'></i><a href="billing.php">Billing</a></li>
@@ -49,23 +51,35 @@
 
       <!-- Sales Summary Widgets -->
       <section class="widgets">
-        <div class="widget">
-          <h3>Total Sales</h3>
-          <p>$<?php echo number_format($totalSales, 2); ?></p>
+    <div class="widget">
+        <i class='bx bx-dollar-circle'></i> <!-- Icon for Total Sales -->
+        <div class="widget-content">
+            <h3>Total Sales</h3>
+            <p>Rs. <?php echo number_format($totalSales, 2); ?></p>
         </div>
-        <div class="widget">
-          <h3>Total Orders</h3>
-          <p><?php echo $totalOrders; ?></p>
+    </div>
+    <div class="widget">
+        <i class='bx bx-cart-alt'></i> <!-- Icon for Total Orders -->
+        <div class="widget-content">
+            <h3>Total Orders</h3>
+            <p><?php echo $totalOrders; ?></p>
         </div>
-        <div class="widget">
-          <h3>Average Order Value</h3>
-          <p>$<?php echo number_format($averageOrderValue, 2); ?></p>
+    </div>
+    <div class="widget">
+        <i class='bx bx-line-chart'></i> <!-- Icon for Average Order Value -->
+        <div class="widget-content">
+            <h3>Average Order Value</h3>
+            <p>$<?php echo number_format($averageOrderValue, 2); ?></p>
         </div>
-        <div class="widget">
-          <h3>Total Sold Items</h3>
-          <p>45</p>
+    </div>
+    <div class="widget">
+        <i class='bx bx-package'></i> <!-- Icon for Total Sold Items -->
+        <div class="widget-content">
+            <h3>Total Sold Items</h3>
+            <p><?php echo $totalOrders; ?></p>
         </div>
-      </section>
+    </div>
+</section>
 
       <!-- Recent Sales Table -->
       <section class="recent-sales">

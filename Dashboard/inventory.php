@@ -11,8 +11,10 @@
   <div class="dashboard">
     <!-- Sidebar -->
     <aside class="sidebar">
-      <h2>Mart Dashboard</h2>
-      <nav>
+    <a href="index.php" class="logo">
+            <i class='bx bx-cart' ></i>
+            <div class="logo-name"><span>Shopping</span>Mart</div>
+        </a>      <nav>
         <ul>
         <li><i class='bx bxs-dashboard'></i><a href="index.php">Dashboard</a></li>
           <li><i class='bx bx-receipt'></i><a href="billing.php">Billing</a></li>
@@ -44,20 +46,32 @@
       <!-- Inventory Summary Widgets -->
       <section class="widgets">
         <div class="widget">
-          <h3>Total Products</h3>
-          <p><?php echo getTotalProducts($conn); ?></p>
+          <i class='bx bx-package'></i> <!-- Icon for Total Products -->
+          <div class="widget-content">
+            <h3>Total Products</h3>
+            <p><?php echo getTotalProducts($conn); ?></p>
+          </div>
         </div>
         <div class="widget">
-          <h3>Out of Stock</h3>
-          <p><?php echo getOutOfStockProducts($conn); ?></p>
+          <i class='bx bx-store'></i> <!-- Icon for Out of Stock -->
+          <div class="widget-content">
+            <h3>Out of Stock</h3>
+            <p><?php echo getOutOfStockProducts($conn); ?></p>
+          </div>
         </div>
         <div class="widget">
-          <h3>Low Stock</h3>
-          <p><?php echo getLowStockProducts($conn); ?></p>
+          <i class='bx bx-low-vision'></i> <!-- Icon for Low Stock -->
+          <div class="widget-content">
+            <h3>Low Stock</h3>
+            <p><?php echo getLowStockProducts($conn); ?></p>
+          </div>
         </div>
         <div class="widget">
-          <h3>Stock Value</h3>
-          <p>$<?php echo getStockValue($conn); ?></p>
+          <i class='bx bx-dollar-circle'></i> <!-- Icon for Stock Value -->
+          <div class="widget-content">
+            <h3>Stock Value</h3>
+            <p>$<?php echo getStockValue($conn); ?></p>
+          </div>
         </div>
       </section>
 
