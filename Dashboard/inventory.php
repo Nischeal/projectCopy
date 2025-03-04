@@ -37,11 +37,11 @@
       ?>
 
       <!-- Filters Section -->
-      <section class="filters">
+      <!-- <section class="filters">
         <label for="search-item">Search Item:</label>
         <input type="text" id="search-item" placeholder="Enter item name or ID">
         <button onclick="searchInventory()">Search</button>
-      </section>
+      </section> -->
 
       <!-- Inventory Summary Widgets -->
       <section class="widgets">
